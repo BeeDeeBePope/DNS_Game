@@ -7,7 +7,6 @@ public class PlayerMovement : MonoBehaviour
 
     public float Speed = 5;
     public float SneakingDivider = 2;
-    public float YMin = 0, YMax = 0.25f;
     private Rigidbody rb;
 
 
@@ -25,21 +24,14 @@ public class PlayerMovement : MonoBehaviour
         //Sneaking
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            Vector3 movement = new Vector3(moveHorizontal, -1, moveVertical);
+            Vector3 movement = new Vector3(moveHorizontal, this.rb.velocity.y/Speed, moveVertical);
             rb.velocity = movement * Speed / SneakingDivider;
         }
         else
         {
-            Vector3 movement = new Vector3(moveHorizontal, 1, moveVertical);
+            Vector3 movement = new Vector3(moveHorizontal, this.rb.velocity.y/Speed, moveVertical);
             rb.velocity = movement * Speed;
         }
-        rb.position = new Vector3
-       (
-           this.transform.position.x,
-           Mathf.Clamp(rb.position.y, YMin, YMax),
-           this.transform.position.z
-       );
-
 
     }
 }
