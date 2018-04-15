@@ -57,6 +57,7 @@ GameObject:
   - component: {fileID: 65685797361023996}
   - component: {fileID: 54834436134866866}
   - component: {fileID: 114107882674988194}
+  - component: {fileID: 114631564125701626}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -118,6 +119,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: a14c3210b2be0d347a90a54a5658b89a, type: 2}
   m_StaticBatchInfo:
@@ -152,6 +154,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -227,6 +230,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 5
   SneakingDivider: 2
+  PositionVariable: {fileID: 11400000, guid: 6841ccb1cd31083489ce09edbd2218b8, type: 2}
+--- !u!114 &114631564125701626
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1689327165022402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ab653f1766e9654c95bdcdfd876df71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!135 &135156637769500142
 SphereCollider:
   m_ObjectHideFlags: 1
