@@ -1,12 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Variables._Definitions;
 
 public class PlayerMovement : MonoBehaviour
 {
 
     public float Speed = 5;
     public float SneakingDivider = 2;
+    public Vector3Variable PositionVariable;
+
+
     private Rigidbody rb;
 
 
@@ -33,6 +37,8 @@ public class PlayerMovement : MonoBehaviour
          
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movement), 0.3f);
         }
+
+        PositionVariable.Value = transform.position;
 
     }
 }

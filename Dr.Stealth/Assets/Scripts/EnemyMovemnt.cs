@@ -4,10 +4,12 @@ using System.Collections.Generic;
 using UnityEditor.AI;
 using UnityEngine;
 using UnityEngine.AI;
+using Variables._Definitions;
 
 public class EnemyMovemnt : MonoBehaviour
 {
     public Transform[] PatrolPoints;
+    public Vector3Variable PlayerPosition;
 
     private NavMeshAgent navMeshAgent;
     private int iterator;
