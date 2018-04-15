@@ -38,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movement), 0.3f);
         }
 
-       // PositionVariable.Value = transform.position;
+        PositionVariable.Value = transform.position;
 
     }
 }
