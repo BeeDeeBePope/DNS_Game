@@ -20,17 +20,18 @@ public class PlayerMovement : MonoBehaviour
 
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
-
+        Vector3 movement = new Vector3(moveHorizontal, rb.velocity.y / Speed, moveVertical);
+        rb.velocity = movement * Speed;
         //Sneaking
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            Vector3 movement = new Vector3(moveHorizontal, this.rb.velocity.y/Speed, moveVertical);
-            rb.velocity = movement * Speed / SneakingDivider;
+
+            rb.velocity /= SneakingDivider;
         }
-        else
+        if (movement != Vector3.zero)
         {
-            Vector3 movement = new Vector3(moveHorizontal, this.rb.velocity.y/Speed, moveVertical);
-            rb.velocity = movement * Speed;
+         
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movement), 0.3f);
         }
 
     }
