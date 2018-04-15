@@ -54,7 +54,8 @@ GameObject:
   - component: {fileID: 4684700703030218}
   - component: {fileID: 195900653456460076}
   - component: {fileID: 114831629241762022}
-  - component: {fileID: 54188195810780494}
+  - component: {fileID: 54656823608488448}
+  - component: {fileID: 65564682519890796}
   m_Layer: 8
   m_Name: Enemy
   m_TagString: Untagged
@@ -95,7 +96,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1971075045910434}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.731637, y: 1.85, z: 11.149518}
+  m_LocalPosition: {x: 0.731637, y: 0.77, z: 11.149518}
   m_LocalScale: {x: 1.3687865, y: 3.292405, z: 1.7421925}
   m_Children:
   - {fileID: 4149417491469168}
@@ -144,7 +145,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1802856522544444}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &54188195810780494
+--- !u!54 &54656823608488448
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -159,6 +160,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &65564682519890796
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1971075045910434}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!108 &108018484134708764
 Light:
   m_ObjectHideFlags: 1
@@ -178,7 +191,7 @@ Light:
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
-    m_Bias: 0.05
+    m_Bias: 0
     m_NormalBias: 0.4
     m_NearPlane: 0.2
   m_Cookie: {fileID: 0}
@@ -187,7 +200,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 256
   m_Lightmapping: 4
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -219,7 +232,7 @@ MonoBehaviour:
   viewDistance: 15
   viewMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
 --- !u!195 &195900653456460076
 NavMeshAgent:
   m_ObjectHideFlags: 1
