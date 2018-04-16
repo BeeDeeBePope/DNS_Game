@@ -43,7 +43,6 @@ public class EnemyMovemnt : MonoBehaviour
             {
                 if(!Physics.Linecast(transform.position, PlayerPosition.Value, viewMask))
                 {
-                    Debug.Log("bug");
                     return true;
                 }
             }
