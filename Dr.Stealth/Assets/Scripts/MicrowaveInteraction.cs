@@ -10,7 +10,7 @@ namespace Assets.Scripts
     {
         public override void Interact()
         {
-            //transform.position += new Vector3(0.0f, 1.0f, 0.0f); 
+            transform.position += new Vector3(0.0f, 1.0f, 0.0f); 
         }
     }
 }
