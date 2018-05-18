@@ -33,23 +33,7 @@ public class PlayerInteraction : MonoBehaviour
             {
                 healingInteractable.isHealing = true;
             }
-            HidingInteractable hidingInteractable = currentInterraction as HidingInteractable;
-            if (hidingInteractable != null)
-            {
-                
-                if (hidingInteractable.playerIsHidden != true)
-                {
-                    hidingInteractable.playerIsHidden = true;
-                    rb.constraints = RigidbodyConstraints.FreezePosition;
-                    transform.position += new Vector3(0.0f, -2.0f, 0.0f);
-                }
-                else
-                {
-                    hidingInteractable.playerIsHidden = false;
-                    transform.position -= new Vector3(0.0f, -2.0f, 0.0f);
-                }
-                
-            }
+
         }
     }
 
