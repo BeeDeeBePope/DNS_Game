@@ -89,7 +89,6 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaDirect: 0.5
     m_PVRFilteringAtrousPositionSigmaIndirect: 2
     m_PVRFilteringAtrousPositionSigmaAO: 1
-    m_ShowResolutionOverlay: 1
   m_LightingDataAsset: {fileID: 112000002, guid: 4f70ae9e8b232f540a508424c319f5ed,
     type: 2}
   m_UseShadowmask: 1
@@ -250,7 +249,7 @@ GameObject:
   m_Component:
   - component: {fileID: 245839108}
   m_Layer: 8
-  m_Name: GameObject
+  m_Name: HiddenPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -324,7 +323,6 @@ Camera:
   m_TargetEye: 3
   m_HDR: 1
   m_AllowMSAA: 0
-  m_AllowDynamicResolution: 0
   m_ForceIntoRT: 1
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
@@ -373,6 +371,7 @@ Transform:
   m_Children:
   - {fileID: 1621993640}
   - {fileID: 245839108}
+  - {fileID: 815332869}
   m_Father: {fileID: 792440965}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -386,8 +385,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 1}
+  m_Size: {x: 1, y: 1, z: 2.00626}
+  m_Center: {x: 0, y: 0, z: 0.4968701}
 --- !u!65 &612302215
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -411,10 +410,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c70544069dbd6f489f08257ae1826fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerIsHidden: 0
+  _isLoosingControl: 0
+  _movement: {fileID: 0}
   colliderNonTrigger: {fileID: 612302215}
   player: {fileID: 1814246917}
-  position: {fileID: 245839108}
+  HiddenPosition: {fileID: 245839108}
+  ExitPosition: {fileID: 815332869}
 --- !u!95 &612302217
 Animator:
   serializedVersion: 3
@@ -437,6 +438,34 @@ Transform:
   m_PrefabParentObject: {fileID: 4312566849382398, guid: ff21f1c12cd57434aa5374dc879e18e8,
     type: 2}
   m_PrefabInternal: {fileID: 133486913}
+--- !u!1 &815332868
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 815332869}
+  m_Layer: 8
+  m_Name: ExitPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &815332869
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 815332868}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.07, y: -0.086, z: 1.01}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 612302213}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &827131831 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4594699922668468, guid: 4d5ce2a3b6ea052459e8b69031616843,
@@ -470,6 +499,11 @@ Transform:
   m_Father: {fileID: 2114725034}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1302075933 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4684700703030218, guid: 5baeb200a22968044b05b6bc04fedf13,
+    type: 2}
+  m_PrefabInternal: {fileID: 1513211628}
 --- !u!1001 &1513211628
 Prefab:
   m_ObjectHideFlags: 0
@@ -479,8 +513,13 @@ Prefab:
     m_Modifications:
     - target: {fileID: 114831629241762022, guid: 5baeb200a22968044b05b6bc04fedf13,
         type: 2}
+      propertyPath: Wait.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114831629241762022, guid: 5baeb200a22968044b05b6bc04fedf13,
+        type: 2}
       propertyPath: PatrolPoints.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4684700703030218, guid: 5baeb200a22968044b05b6bc04fedf13, type: 2}
       propertyPath: m_LocalPosition.x
@@ -518,7 +557,7 @@ Prefab:
         type: 2}
       propertyPath: PatrolPoints.Array.data[0]
       value: 
-      objectReference: {fileID: 1220294766}
+      objectReference: {fileID: 1302075933}
     - target: {fileID: 114831629241762022, guid: 5baeb200a22968044b05b6bc04fedf13,
         type: 2}
       propertyPath: PatrolPoints.Array.data[1]
@@ -532,6 +571,11 @@ Prefab:
         type: 2}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114831629241762022, guid: 5baeb200a22968044b05b6bc04fedf13,
+        type: 2}
+      propertyPath: Wait.Array.data[1]
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 135163343624535280, guid: 5baeb200a22968044b05b6bc04fedf13, type: 2}
@@ -612,7 +656,6 @@ GameObject:
   - component: {fileID: 1621993640}
   - component: {fileID: 1621993643}
   - component: {fileID: 1621993642}
-  - component: {fileID: 1621993641}
   m_Layer: 8
   m_Name: WardrobeModel
   m_TagString: Untagged
@@ -633,21 +676,6 @@ Transform:
   m_Father: {fileID: 612302213}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1621993641
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1621993639}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c70544069dbd6f489f08257ae1826fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerIsHidden: 0
-  colliderNonTrigger: {fileID: 0}
-  player: {fileID: 0}
-  position: {fileID: 0}
 --- !u!23 &1621993642
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -699,12 +727,12 @@ Prefab:
     - target: {fileID: 224581800144593052, guid: 991ee10d66c24b345a1ec6094164a199,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 259.5
       objectReference: {fileID: 0}
     - target: {fileID: 224581800144593052, guid: 991ee10d66c24b345a1ec6094164a199,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 273
       objectReference: {fileID: 0}
     - target: {fileID: 224581800144593052, guid: 991ee10d66c24b345a1ec6094164a199,
         type: 2}

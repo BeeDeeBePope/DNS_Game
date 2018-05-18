@@ -5,11 +5,32 @@ using UnityEngine;
 public class PlayerInteraction : MonoBehaviour
 {
     private Rigidbody  rb;
+
+    private bool canInteract;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        movement = GetComponent<PlayerMovement>();
+    }
+
+    private void Update()
+    {
+        if (canInteract)
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                currentInterraction.Interact();
+                //HealingInteractable healingInteractable = currentInterraction as HealingInteractable;
+                //if (healingInteractable != null)
+                //{
+                //    healingInteractable.isHealing = true;
+                //}
+            }
+        }
     }
     private IInteractable currentInterraction;
+    private PlayerMovement movement;
+
     private void OnTriggerEnter(Collider collision)
     {
         if (!collision.gameObject.CompareTag("Interactable"))
@@ -17,26 +38,13 @@ public class PlayerInteraction : MonoBehaviour
             return;
         }
         currentInterraction = collision.gameObject.GetComponent<IInteractable>();
+        canInteract = true;
+        if (currentInterraction.IsLoosingControl)
+        {
+            currentInterraction.Movement = movement;
+        }
     }
     
-    private void OnTriggerStay(Collider collision)
-    {
-        if (currentInterraction == null)
-        {
-            return;
-        }
-        if (Input.GetKey(KeyCode.E))
-        {
-            currentInterraction.Interact();
-            HealingInteractable healingInteractable = currentInterraction as HealingInteractable;
-            if (healingInteractable!=null)
-            {
-                healingInteractable.isHealing = true;
-            }
-
-        }
-    }
-
     private void OnTriggerExit(Collider collision)
     {
         if (!collision.gameObject.CompareTag("Interactable"))
@@ -45,7 +53,9 @@ public class PlayerInteraction : MonoBehaviour
         }
         if(currentInterraction == collision.gameObject.GetComponent<IInteractable>())
         {
+            currentInterraction.Movement = null;
             currentInterraction = null;
+            canInteract = false;
         }
     }
 
