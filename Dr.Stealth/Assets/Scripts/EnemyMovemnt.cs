@@ -5,12 +5,15 @@ using UnityEditor.AI;
 using UnityEngine;
 using UnityEngine.AI;
 using Variables._Definitions;
+using UnityEngine.Events;
 
 public class EnemyMovemnt : MonoBehaviour
 {
     public Transform[] PatrolPoints;
     public float[] Wait;
     public Vector3Variable PlayerPosition;
+    public UnityEvent PlayerDetectedEvent;
+    public StringVariable UItext;
 
     public Light spotlight;
     public float viewDistance;
@@ -54,6 +57,8 @@ public class EnemyMovemnt : MonoBehaviour
     {
         if (CanSeePlayer())
         {
+            PlayerDetectedEvent.Invoke();
+            UItext.Value = "Wykryto cię !";
             spotlight.color = Color.red;
         }
         else

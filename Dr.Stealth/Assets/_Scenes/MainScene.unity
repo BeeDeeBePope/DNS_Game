@@ -39,7 +39,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1526980366}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -442,6 +442,11 @@ Transform:
   m_PrefabParentObject: {fileID: 4594699922668468, guid: 4d5ce2a3b6ea052459e8b69031616843,
     type: 2}
   m_PrefabInternal: {fileID: 2079119301}
+--- !u!224 &1035482047 stripped
+RectTransform:
+  m_PrefabParentObject: {fileID: 224581800144593052, guid: 991ee10d66c24b345a1ec6094164a199,
+    type: 2}
+  m_PrefabInternal: {fileID: 1731988530}
 --- !u!1 &1220294765
 GameObject:
   m_ObjectHideFlags: 0
@@ -528,13 +533,13 @@ Prefab:
       propertyPath: m_Name
       value: Enemy2
       objectReference: {fileID: 0}
-    - target: {fileID: 135163343624535280, guid: 5baeb200a22968044b05b6bc04fedf13,
+    - target: {fileID: 114831629241762022, guid: 5baeb200a22968044b05b6bc04fedf13,
         type: 2}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 135163343624535280, guid: 5baeb200a22968044b05b6bc04fedf13, type: 2}
+      propertyPath: UItext
+      value: 
+      objectReference: {fileID: 11400000, guid: 536a296c3fd026545b77fa3e486dbbdd,
+        type: 2}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5baeb200a22968044b05b6bc04fedf13, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1526980365
@@ -846,9 +851,100 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1086990742851290, guid: 991ee10d66c24b345a1ec6094164a199, type: 2}
+      propertyPath: m_Name
+      value: Text
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 991ee10d66c24b345a1ec6094164a199, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1760664561
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1760664562}
+  - component: {fileID: 1760664564}
+  - component: {fileID: 1760664563}
+  - component: {fileID: 1760664565}
+  m_Layer: 5
+  m_Name: Detect
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1760664562
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1760664561}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1035482047}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -29, y: -30}
+  m_SizeDelta: {x: 146.8, y: 28.5}
+  m_Pivot: {x: 1, y: 1.0000002}
+--- !u!114 &1760664563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1760664561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 24
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 2
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "Wykryto ci\u0119 !!!"
+--- !u!222 &1760664564
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1760664561}
+--- !u!114 &1760664565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1760664561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f9680e21aa73c545bb8049a756ce39a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stringVariable: {fileID: 11400000, guid: 536a296c3fd026545b77fa3e486dbbdd, type: 2}
 --- !u!1001 &1790408416
 Prefab:
   m_ObjectHideFlags: 0
@@ -973,6 +1069,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114831629241762022, guid: 5baeb200a22968044b05b6bc04fedf13,
+        type: 2}
+      propertyPath: PlayerDetectedEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4684700703030218, guid: 5baeb200a22968044b05b6bc04fedf13, type: 2}
       propertyPath: m_LocalPosition.x
       value: -12.07
@@ -1025,8 +1126,39 @@ Prefab:
       propertyPath: PatrolPoints.Array.data[3]
       value: 
       objectReference: {fileID: 14514000}
-    m_RemovedComponents:
-    - {fileID: 135163343624535280, guid: 5baeb200a22968044b05b6bc04fedf13, type: 2}
+    - target: {fileID: 114831629241762022, guid: 5baeb200a22968044b05b6bc04fedf13,
+        type: 2}
+      propertyPath: PlayerDetectedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114831629241762022, guid: 5baeb200a22968044b05b6bc04fedf13,
+        type: 2}
+      propertyPath: PlayerDetectedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114831629241762022, guid: 5baeb200a22968044b05b6bc04fedf13,
+        type: 2}
+      propertyPath: PlayerDetectedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 11400000, guid: 0ed6027a3996eff42a3a93afdb8b3f59,
+        type: 2}
+    - target: {fileID: 114831629241762022, guid: 5baeb200a22968044b05b6bc04fedf13,
+        type: 2}
+      propertyPath: PlayerDetectedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Raise
+      objectReference: {fileID: 0}
+    - target: {fileID: 114831629241762022, guid: 5baeb200a22968044b05b6bc04fedf13,
+        type: 2}
+      propertyPath: PlayerDetectedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114831629241762022, guid: 5baeb200a22968044b05b6bc04fedf13,
+        type: 2}
+      propertyPath: UItext
+      value: 
+      objectReference: {fileID: 11400000, guid: 536a296c3fd026545b77fa3e486dbbdd,
+        type: 2}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5baeb200a22968044b05b6bc04fedf13, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &2079119301

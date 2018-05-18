@@ -29,12 +29,10 @@ public class PlayerMovement : MonoBehaviour
         //Sneaking
         if (Input.GetKey(KeyCode.LeftShift))
         {
-
             rb.velocity /= SneakingDivider;
         }
         if (movement != Vector3.zero)
-        {
-         
+        {         
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movement), 0.3f);
         }
 
