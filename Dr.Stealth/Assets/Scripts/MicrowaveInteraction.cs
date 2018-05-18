@@ -8,6 +8,7 @@ namespace Assets.Scripts
 {
     public class MicrowaveInteraction : HealingInteractable
     {
+        
         public override void Interact()
         {
             transform.position += new Vector3(0.0f, 1.0f, 0.0f); 

@@ -6,11 +6,25 @@ using UnityEngine;
 using UnityEngine.AI;
 using Variables._Definitions;
 
+[Serializable]
+public class BehaviourPoint {
+    public Transform Transform;
+    public MovementNode MovementNode;
+}
+
+public enum MovementNode 
+{
+    None, 
+    Wait,
+    Interact
+}
+
 public class EnemyMovemnt : MonoBehaviour
 {
-    public Transform[] PatrolPoints;
+    public BehaviourPoint[] PatrolPoints;
     public float[] Wait;
     public Vector3Variable PlayerPosition;
+    public EnemyInteraction interaction;
 
     public Light spotlight;
     public float viewDistance;
@@ -19,8 +33,12 @@ public class EnemyMovemnt : MonoBehaviour
 
     private NavMeshAgent navMeshAgent;
     private int iterator;
-    private Transform currenWaypoint;
+    private BehaviourPoint currenWaypoint;
     private float waittime;
+    private bool actionPerformed = true;
+
+    private bool isWaiting;
+    private float waitTime;
 
     Color originalSpotlightColor;
     // Use this for initialization
@@ -30,7 +48,7 @@ public class EnemyMovemnt : MonoBehaviour
         originalSpotlightColor = spotlight.color;
         navMeshAgent = GetComponent<NavMeshAgent>();
         navMeshAgent.isStopped = true;
-        waittime = 0;
+        waitTime = 2;
     }
     
     bool CanSeePlayer()
@@ -49,40 +67,89 @@ public class EnemyMovemnt : MonoBehaviour
         }
         return false;
     }
+
+    
     // Update is called once per frame
     void Update()
     {
-        if (CanSeePlayer())
-        {
-            spotlight.color = Color.red;
-        }
-        else
-        {
-            spotlight.color = originalSpotlightColor;
-        }
-        if (navMeshAgent.isStopped && waittime <= 0)
-        {
-            if (iterator >= PatrolPoints.Length)
-            {
-                iterator = 0;
+        
+        
+
+        
+
+        if (navMeshAgent.pathStatus == NavMeshPathStatus.PathComplete) {
+
+            if (isWaiting) {
+                waitTime -= Time.deltaTime;
+                if (waitTime <= 0) {
+                    isWaiting = false;
+                    actionPerformed = true;
+                }
+                return;
             }
 
-            waittime = Wait[iterator];
-            currenWaypoint = PatrolPoints[iterator++];
-            navMeshAgent.SetDestination(currenWaypoint.position);
+            if (actionPerformed) {
+                if (iterator >= PatrolPoints.Length) {
+                    iterator = 0;
+                }
+
+                currenWaypoint = PatrolPoints[iterator++];
+                navMeshAgent.SetDestination(currenWaypoint.Transform.position);
+            }
+            if (!isWaiting) {
+                switch (currenWaypoint.MovementNode) {
+                    case MovementNode.None:
+                        break;
+                    case MovementNode.Wait:
+                        isWaiting = true;
+                        waitTime = 2;
+                        break;
+                    case MovementNode.Interact:
+                        float interactionTime = interaction.InteractWithClosest();
+                        isWaiting = true;
+                        waitTime = interactionTime;
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException("MovementNode Value not implemented.");
+
+                }
+            }
         }
 
-        waittime -= Time.deltaTime;
 
-        if (waittime <= 0)
-        {
-            navMeshAgent.isStopped = false;
-        }
 
-        if (Math.Abs(transform.position.x - currenWaypoint.position.x) < .0001f && Math.Abs(transform.position.z - currenWaypoint.position.z) < .0001f)
-        {
-            navMeshAgent.isStopped = true;
-        }
+
+        //if (CanSeePlayer())
+        //{
+        //    spotlight.color = Color.red;
+        //}
+        //else
+        //{
+        //    spotlight.color = originalSpotlightColor;
+        //}
+        //if (navMeshAgent.isStopped && waittime <= 0)
+        //{
+        //    if (iterator >= PatrolPoints.Length)
+        //    {
+        //        iterator = 0;
+        //    }
+
+        //    waittime = Wait[iterator];
+        //    currenWaypoint = PatrolPoints[iterator++];
+        //    navMeshAgent.SetDestination(currenWaypoint.position);
+        //}
+
+        //waittime -= Time.deltaTime;
+
+        //if (waittime <= 0)
+        //{
+        //    navMeshAgent.isStopped = false;
+        //}
+
+        //if (Math.Abs(transform.position.x - currenWaypoint.position.x) < .0001f && Math.Abs(transform.position.z - currenWaypoint.position.z) < .0001f)
+        //{
+        //    navMeshAgent.isStopped = true;
+        //}
     }
     void OnDrawGizmos()
     {
@@ -91,4 +158,3 @@ public class EnemyMovemnt : MonoBehaviour
 
     }
 }
-
