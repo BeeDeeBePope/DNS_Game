@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class PlayerInteraction : MonoBehaviour
 {
+    private Rigidbody  rb;
+    void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
     private IInteractable currentInterraction;
     private void OnTriggerEnter(Collider collision)
     {
@@ -27,6 +32,23 @@ public class PlayerInteraction : MonoBehaviour
             if (healingInteractable!=null)
             {
                 healingInteractable.isHealing = true;
+            }
+            HidingInteractable hidingInteractable = currentInterraction as HidingInteractable;
+            if (hidingInteractable != null)
+            {
+                
+                if (hidingInteractable.playerIsHidden != true)
+                {
+                    hidingInteractable.playerIsHidden = true;
+                    rb.constraints = RigidbodyConstraints.FreezePosition;
+                    transform.position += new Vector3(0.0f, -2.0f, 0.0f);
+                }
+                else
+                {
+                    hidingInteractable.playerIsHidden = false;
+                    transform.position -= new Vector3(0.0f, -2.0f, 0.0f);
+                }
+                
             }
         }
     }
